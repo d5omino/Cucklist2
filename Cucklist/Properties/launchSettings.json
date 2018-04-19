@@ -13,7 +13,10 @@
       "launchBrowser": true,
       "launchUrl": "https://localhost:44309/",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "MSAPassword": "mbjaPSMZ1153=aucRAK4*++",
+        "DevDb": "Data Source=cucklist.database.windows.net;Initial Catalog=Development;Integrated Security=False;User ID=sqladmin;Password=Simple714111;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "MSAClientId": "67e8db15-43f7-409b-aabd-8659ece3189f"
       }
     },
     "Cucklist": {

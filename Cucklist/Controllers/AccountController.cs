@@ -201,7 +201,9 @@ namespace Cucklist.Controllers
         [AllowAnonymous]
         public IActionResult Lockout()
         {
+#pragma warning disable IDE0022 // Use expression body for methods
             return View();
+#pragma warning restore IDE0022 // Use expression body for methods
         }
 
         [HttpGet]
@@ -350,7 +352,9 @@ namespace Cucklist.Controllers
         [AllowAnonymous]
         public IActionResult ForgotPassword()
         {
+#pragma warning disable IDE0022 // Use expression body for methods
             return View();
+#pragma warning restore IDE0022 // Use expression body for methods
         }
 
         [HttpPost]

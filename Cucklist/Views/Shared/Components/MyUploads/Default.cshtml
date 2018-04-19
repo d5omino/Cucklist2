@@ -1,0 +1,55 @@
+﻿@model Cucklist.Models.ApplicationUser
+
+
+<div class="container" id="DisplayContainer">
+
+
+    <div class="row" id="MainRow">
+        <div class="col-lg-12" id="MainColumn">
+            <div class="row" id="ClipsRow">
+                <div class="col-lg-12" id="ClipsCol">
+                    <h4>My Audio Clips</h4>
+                    @foreach (Clip clip in Model.Clips)
+                    {
+                        <div class="media">
+                            <div class="media-body">
+                                <audio controls source src="@clip.Path" />
+                            </div>
+                        </div>
+                    }
+                    @await Component.InvokeAsync("FileUpload")
+                </div>
+            </div>
+            <div class="row" id="VideosRow">
+                <div class="col-lg-12" id="VideosCol">
+                    <h4>My Videos</h4>
+                    @foreach (Video video in Model.Videos)
+                    {
+                        <div class="media">
+                            <div class="media-body">
+                                <video controls source src="@video.Path" />
+                            </div>
+                        </div>
+                    }
+                </div>
+                    @await Component.InvokeAsync("FileUpload")
+           </div>
+            <div class="row" id="ImagesRow">
+                <div class="col-lg-12">
+                    <h4>My Images</h4>
+                    @foreach (Image image in Model.Images)
+                    {
+                        <div class="media">
+                            <div class="media-body">
+                                <img src="@image.Path" alt="Oops" />
+                            </div>
+                        </div>
+                    }
+                </div>
+                @await Component.InvokeAsync("FileUpload")
+            </div>
+        </div>
+    </div>
+</div>
+
+

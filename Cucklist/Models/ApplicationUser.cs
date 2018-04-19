@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
 
 namespace Cucklist.Models
 {
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser
     {
+        public virtual ICollection<Image> Images { get; set; }
+        public virtual ICollection<Video> Videos { get; set; }
+        public virtual ICollection<Clip> Clips { get; set; }
+
     }
 }

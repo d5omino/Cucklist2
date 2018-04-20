@@ -37,7 +37,7 @@ namespace Cucklist.Controllers
         //task based method that takes care of the physical upload of filies and images into an azure based storage account using blobs for each image. returns a list of cloudblockblobs that were added with this transaction//
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> UploadFile(List<IFormFile> files)
+        public async Task<IActionResult> UploadFile(List<IFormFile> files,string description,string name)
         {
             foreach (IFormFile file in files)
             {
@@ -48,7 +48,7 @@ namespace Cucklist.Controllers
                 using (filestream)
                 {
                     await blob.UploadFromStreamAsync(filestream);
-                    await CreateFileRecord(blob);
+                    await CreateFileRecord(blob,fileinfo,description,name);
                 }
             };
             var returnurl = Request.Headers["Referer"];
@@ -56,7 +56,7 @@ namespace Cucklist.Controllers
                 return Redirect(returnurl);
         }
         //creates database record of image with link//
-        public async Task CreateFileRecord(CloudBlockBlob blob)
+        public async Task CreateFileRecord(CloudBlockBlob blob,FileInfo fileinfo,string description , string name)
         {
             var Owner = await _usermanager.GetUserAsync(User);
             string path = blob.Uri.ToString();
@@ -65,13 +65,21 @@ namespace Cucklist.Controllers
                 Video video = new Video(path);
                 video.ApplicationUser = Owner;
                 video.ApplicationUserId = Owner.Id;
+                video.Description = description;
+                video.FileExtension = fileinfo.Extension;
+                video.Filename = fileinfo.Name;
+                video.Name = name;
                 _context.Add(video);
             }
             if (path.EndsWith(".png") || path.EndsWith(".gif") || path.EndsWith(".jpg"))
             {
                 Image image = new Image(path);
-                 image.ApplicationUser = Owner;
+                image.ApplicationUser = Owner;
                 image.ApplicationUserId = Owner.Id;
+                image.Description = description;
+                image.FileExtension = fileinfo.Extension;
+                image.Filename = fileinfo.Name;
+                image.Name = name;
                 _context.Add(image);
             }
             if (path.EndsWith(".wav") || path.EndsWith(".mp3") || path.EndsWith(".wma") || path.EndsWith(".m4a"))
@@ -79,6 +87,10 @@ namespace Cucklist.Controllers
                 Clip image = new Clip(path);
                 image.ApplicationUser = Owner;
                 image.ApplicationUserId = Owner.Id;
+                image.Description = description;
+                image.FileExtension = fileinfo.Extension;
+                image.Filename = fileinfo.Name;
+                image.Name = name;
                 _context.Add(image);
             }
             await _context.SaveChangesAsync();

@@ -9,58 +9,52 @@
     <div class="jumbotron">
         <h4>Clips</h4>
         <div class="row" id="ClipsRow">
-
             <div class="col-lg-12" id="ClipsCol">
-
                 @foreach (Clip clip in clips)
                 {
-                    <div class="media">
-                        <p>@clip.Name</p>
-                        <div class="media-body">
-                            <audio controls src="@clip.Path" />
-                        </div>
+                   <div class="col-sm-5" style="display:block">
+                    <h6>@clip.Name</h6>
+                    <audio controls src="@clip.Path" />
+                    <p>@clip.Description</p>
                     </div>
+                     
                 }
             </div>
         </div>
     </div>
     <div class="jumbotron">
-    <h4>Images</h4>
-    <div class="row" id="ImagesRow">
+        <h4>Images</h4>
+        <div class="row" id="ImagesRow">
+            <div class="col-lg-12" id="ImagesCol">
+                <div class="container">
+                    <div class="row flex-box flex-wrap-wrap">
+                        @foreach (Image image in images)
+                        {
+                            <div class="col-sm-2 flex-box flex-justify-center flex-align-center"><a href="@image.Path" class="fancybox" rel="gallery1" title="@image.Name"><img src="@image.Path" class="img-fluid" /></a></div>
+                        }
 
-        <div class="col-lg-12" id="ImagesCol">
-
-            @foreach (Image image in images)
-            {
-                <div class="media">
-                    <p>@image.Name</p>
-                    <div class="media-body">
-                        <img src="@image.Path" alt="woops" />
                     </div>
                 </div>
-            }
+            </div>
         </div>
     </div>
-    </div>
     <div class="jumbotron">
-    <h4>Videos</h4>
-    <div class="row" id="VideosRow">
+        <h4>Videos</h4>
+        <div class="row" id="VideosRow">
 
-        <div class="col-lg-12" id="VideosCol">
+            <div class="col-lg-12" id="VideosCol">
 
-            @foreach (Video video in videos)
-            {
+                @foreach (Video video in videos)
+                {
                 <div class="media">
                     <p>@video.Name</p>
                     <div class="media-body">
                         <video controls src="@video.Path" />
                     </div>
                 </div>
-            }
+                }
+            </div>
         </div>
+
     </div>
-    
-    </div>
-    
-    
 </div>

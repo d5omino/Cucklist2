@@ -3,15 +3,18 @@
 
 
 
-<html>
-
-<body>
-
+<div>
+    <h6>Upload New Files</h6>
+    <hr />
     <form asp-action="UploadFile" asp-controller="Upload" method="post" enctype="multipart/form-data">
-        <input type="file" multiple name="Files" accept=".m4a,image/*,video/*,audio/*" />
+        <input type="text" name="Description" placeholder="Description" />
+        <input type="text" name="Name" placeholder="What do you want to name this item?" />
+
+        <input type="file" name="Files" accept=".m4a,image/*,video/*,audio/*" />
+
         <input type="submit" value="Submit" />
     </form>
+</div>
 
 
-</body>
-</html>
+
